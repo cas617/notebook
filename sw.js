@@ -1,5 +1,6 @@
-const CACHE = "folio-shell-v1";
-const SHELL = ["/", "/index.html", "/manifest.webmanifest", "/folio.svg"];
+const CACHE = "folio-shell-v2";
+const BASE = self.registration.scope;
+const SHELL = [BASE, `${BASE}index.html`, `${BASE}manifest.webmanifest`, `${BASE}folio.svg`];
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
@@ -13,8 +14,8 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin || url.pathname.startsWith("/api/") || url.pathname.startsWith("/auth/")) return;
   if (request.mode === "navigate") {
     event.respondWith(fetch(request).then((response) => {
-      const copy = response.clone(); caches.open(CACHE).then((cache) => cache.put("/index.html", copy)); return response;
-    }).catch(() => caches.match("/index.html")));
+      const copy = response.clone(); caches.open(CACHE).then((cache) => cache.put(`${BASE}index.html`, copy)); return response;
+    }).catch(() => caches.match(`${BASE}index.html`)));
     return;
   }
   if (!["script", "style", "font", "image", "worker"].includes(request.destination)) return;

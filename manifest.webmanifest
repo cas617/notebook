@@ -2,9 +2,9 @@
   "name": "Folio 數位筆記本",
   "short_name": "Folio",
   "description": "本地優先的手寫、PDF 閱讀與註記工具",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#f4f5f2",
   "theme_color": "#f4f5f2",
-  "icons": [{ "src": "/folio.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+  "icons": [{ "src": "./folio.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
 }
